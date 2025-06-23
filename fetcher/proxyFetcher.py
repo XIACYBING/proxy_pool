@@ -47,6 +47,23 @@ class ProxyFetcher(object):
                 sleep(5)
 
     @staticmethod
+    def free_proxy_12():
+        """
+        站大爷 https://www.zdaye.com/free/1/
+        """
+        start_url = 'https://www.zdaye.com/free/1/'
+
+        # 读取页面
+        html_tree = WebRequest().get(start_url, verify=False).tree
+        row_list = html_tree.xpath("//table[@id='ipc']/tbody/tr")[0]
+        for row in row_list:
+            cell_list = row.getchildren()
+            print(f"获取到{cell_list[0].text}:{cell_list[1].text}")
+
+
+        # 循环获取
+
+    @staticmethod
     def freeProxy02():
         """
         代理66 http://www.66ip.cn/
@@ -234,8 +251,6 @@ class ProxyFetcher(object):
 
 
 if __name__ == '__main__':
-    p = ProxyFetcher()
-    for _ in p.freeProxy06():
-        print(_)
+    pass
 
 # http://nntime.com/proxy-list-01.htm
